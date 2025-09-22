@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TYMORA AI - Coming Soon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #e6e7ee;
+            --bg-secondary: #d1d9e6;
+            --shadow-light: #ffffff;
+            --shadow-dark: #a3b1c6;
+            --text-primary: #4a5568;
+            --text-secondary: #718096;
+            --text-muted: #a0aec0;
+            --accent-color: #667eea;
+            --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-color: #48bb78;
+            --radius: 20px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Floating Elements Background */
+        .background-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            box-shadow: 
+                20px 20px 60px var(--shadow-dark),
+                -20px -20px 60px var(--shadow-light);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .floating-element:nth-child(4) {
+            width: 120px;
+            height: 120px;
+            top: 30%;
+            right: 40%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-30px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(15px) rotate(240deg);
+            }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius);
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 
+                20px 20px 60px var(--shadow-dark),
+                -20px -20px 60px var(--shadow-light);
+            position: relative;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .main-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Logo */
+        .logo-container {
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-primary);
+            border-radius: 50%;
+            box-shadow: 
+                inset 8px 8px 16px var(--shadow-dark),
+                inset -8px -8px 16px var(--shadow-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 
+                    inset 8px 8px 16px var(--shadow-dark),
+                    inset -8px -8px 16px var(--shadow-light);
+            }
+            50% {
+                box-shadow: 
+                    inset 12px 12px 24px var(--shadow-dark),
+                    inset -12px -12px 24px var(--shadow-light);
+            }
+        }
+
+        .company-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        /* Main Content */
+        .main-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 40px 0 20px;
+            letter-spacing: -2px;
+            animation: slideUp 1s ease 0.3s both;
+        }
+
+        .description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideUp 1s ease 0.6s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            margin: 50px 0;
+            animation: slideUp 1s ease 0.9s both;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .countdown-item {
+            background: var(--bg-primary);
+            border-radius: var(--radius);
+            padding: 25px 20px;
+            min-width: 100px;
+            box-shadow: 
+                15px 15px 30px var(--shadow-dark),
+                -15px -15px 30px var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                20px 20px 40px var(--shadow-dark),
+                -20px -20px 40px var(--shadow-light);
+        }
+
+        .countdown-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            margin: 40px 0;
+            animation: slideUp 1s ease 1.2s both;
+        }
+
+        .progress-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--bg-primary);
+            border-radius: 20px;
+            box-shadow: 
+                inset 6px 6px 12px var(--shadow-dark),
+                inset -6px -6px 12px var(--shadow-light);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 75%;
+            background: var(--accent-gradient);
+            border-radius: 20px;
+            position: relative;
+            animation: progressGrow 2s ease-in-out;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes progressGrow {
+            from { width: 0%; }
+            to { width: 75%; }
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Features Grid */
+        .features-section {
+            margin: 50px 0;
+            animation: slideUp 1s ease 1.8s both;
+        }
+
+        .features-title {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            background: var(--bg-primary);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 
+                10px 10px 20px var(--shadow-dark),
+                -10px -10px 20px var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                15px 15px 30px var(--shadow-dark),
+                -15px -15px 30px var(--shadow-light);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-primary);
+            border-radius: 50%;
+            box-shadow: 
+                inset 6px 6px 12px var(--shadow-dark),
+                inset -6px -6px 12px var(--shadow-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Social Links */
+        .social-section {
+            margin-top: 50px;
+            animation: slideUp 1s ease 2.1s both;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-primary);
+            border-radius: 50%;
+            box-shadow: 
+                8px 8px 16px var(--shadow-dark),
+                -8px -8px 16px var(--shadow-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                12px 12px 24px var(--shadow-dark),
+                -12px -12px 24px var(--shadow-light);
+            color: var(--accent-color);
+        }
+
+        .social-link:active {
+            transform: translateY(0);
+            box-shadow: 
+                inset 6px 6px 12px var(--shadow-dark),
+                inset -6px -6px 12px var(--shadow-light);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--shadow-dark);
+            animation: slideUp 1s ease 2.4s both;
+        }
+
+        .contact-title {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .contact-email {
+            background: var(--bg-primary);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 
+                inset 8px 8px 16px var(--shadow-dark),
+                inset -8px -8px 16px var(--shadow-light);
+            text-align: center;
+        }
+
+        .contact-email a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .contact-email a:hover {
+            color: var(--text-primary);
+            text-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-card {
+                padding: 40px 30px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .countdown {
+                gap: 15px;
+            }
+
+            .countdown-item {
+                padding: 20px 15px;
+                min-width: 80px;
+            }
+
+            .countdown-number {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .main-card {
+                padding: 30px 20px;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .countdown {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .countdown-item {
+                min-width: 70px;
+                padding: 15px 10px;
+            }
+
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+
+            .contact-email {
+                padding: 15px;
+            }
+
+            .contact-email a {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <div class="container">
+        <div class="main-card">
+            <!-- Logo Section -->
+            <div class="logo-container">
+                <div class="logo">T</div>
+                <div class="company-name">TYMORA AI</div>
+                <div class="tagline">Redefining Intelligence</div>
+            </div>
+
+            <!-- Main Content -->
+            <h1 class="main-title">Coming Soon</h1>
+            <p class="description">
+                We're building the next generation of AI technology that will revolutionize 
+                how businesses operate, think, and grow. Something extraordinary is on its way.
+            </p>
+
+            <!-- Countdown Timer -->
+            <div class="countdown-container">
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">45</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">12</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">30</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">15</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-label">Development Progress</div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-text">75% Complete</div>
+            </div>
+
+            <!-- Features Preview -->
+            <div class="features-section">
+                <h3 class="features-title">What to Expect</h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🧠</div>
+                        <div class="feature-title">Smart AI</div>
+                        <div class="feature-description">Advanced machine learning algorithms</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-title">Lightning Fast</div>
+                        <div class="feature-description">Real-time processing capabilities</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔒</div>
+                        <div class="feature-title">Secure</div>
+                        <div class="feature-description">Enterprise-grade security</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚀</div>
+                        <div class="feature-title">Scalable</div>
+                        <div class="feature-description">Grows with your business</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-section">
+                <div class="social-links">
+                    <a href="#" class="social-link">📧</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">💼</a>
+                    <a href="#" class="social-link">📱</a>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h3 class="contact-title">Get in Touch</h3>
+                <div class="contact-email">
+                    <a href="mailto:contact@tymoraai.com">contact@tymoraai.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer Function
+        function updateCountdown() {
+            const launchDate = new Date('2025-12-01T00:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = launchDate - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            } else {
+                document.getElementById('countdown').innerHTML = '<div class="countdown-item"><span class="countdown-number">🎉</span><span class="countdown-label">Launched!</span></div>';
+            }
+        }
+
+        // Initialize countdown
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Parallax effect for floating elements
+        document.addEventListener('mousemove', function(e) {
+            const elements = document.querySelectorAll('.floating-element');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            elements.forEach((element, index) => {
+                const speed = (index + 1) * 0.5;
+                const x = (mouseX - 0.5) * speed * 20;
+                const y = (mouseY - 0.5) * speed * 20;
+                element.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Add click effect to neumorphic elements
+        function addClickEffect(selector) {
+            document.querySelectorAll(selector).forEach(element => {
+                element.addEventListener('mousedown', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                element.addEventListener('mouseup', function() {
+                    this.style.transform = 'scale(1)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        // Apply click effects
+        addClickEffect('.countdown-item');
+        addClickEffect('.feature-item');
+        addClickEffect('.social-link');
+
+        // Progress bar animation
+        function animateProgress() {
+            const progressFill = document.querySelector('.progress-fill');
+            let width = 0;
+            const targetWidth = 75;
+            const increment = 1;
+            
+            const interval = setInterval(() => {
+                if (width >= targetWidth) {
+                    clearInterval(interval);
+                } else {
+                    width += increment;
+                    progressFill.style.width = width + '%';
+                }
+            }, 30);
+        }
+
+        // Start progress animation when page loads
+        window.addEventListener('load', () => {
+            setTimeout(animateProgress, 1000);
+        });
+
+        // Add subtle floating animation to main card
+        function addFloatingAnimation() {
+            const mainCard = document.querySelector('.main-card');
+            let floatDirection = 1;
+            let currentFloat = 0;
+            
+            setInterval(() => {
+                currentFloat += floatDirection * 0.5;
+                if (currentFloat > 10 || currentFloat < -10) {
+                    floatDirection *= -1;
+                }
+                mainCard.style.transform = `translateY(${currentFloat}px)`;
+            }, 100);
+        }
+
+        // Initialize floating animation
+        addFloatingAnimation();
+    </script>
+</body>
+</html>
